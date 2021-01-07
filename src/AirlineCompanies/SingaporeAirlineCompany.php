@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Plane\AirlineCompanies;
+namespace AirlinePassengerManifest\AirlineCompanies;
 
 
 class SingaporeAirlineCompany extends AirlineCompanyAbstract

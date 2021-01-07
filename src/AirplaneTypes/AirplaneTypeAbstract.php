@@ -1,6 +1,6 @@
 <?php
 
-namespace Plane\AirplaneTypes;
+namespace AirlinePassengerManifest\AirplaneTypes;
 
 abstract class AirplaneTypeAbstract
 {

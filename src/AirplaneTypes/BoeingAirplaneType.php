@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Plane\AirplaneTypes;
+namespace AirlinePassengerManifest\AirplaneTypes;
 
 
 class BoeingAirplaneType extends AirplaneTypeAbstract
