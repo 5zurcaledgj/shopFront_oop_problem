@@ -4,11 +4,11 @@ namespace AirlinePassengerManifest;
 
 use AirlinePassengerManifest\Aircraft\Aircraft;
 use AirlinePassengerManifest\Enum\Gender;
+use AirlinePassengerManifest\Ticket\ITicket;
 use AirlinePassengerManifest\Ticket\Ticket;
 use Exception;
 
-class Passenger
-
+class Passenger implements IPassenger
 {
     private $name;
     private $age;
@@ -26,8 +26,8 @@ class Passenger
         $this->gender = $gender;
     }
 
-    public function setTicket(array $ticket) {
-        $this->ticket = new Ticket($ticket['seatNumber'], $ticket['class'], $ticket['brand'], $ticket['airlineCompany'],);
+    public function setTicket(ITicket $ticket) {
+        $this->ticket = $ticket;
     }
 
     public function checkIn() {
@@ -35,6 +35,17 @@ class Passenger
             throw new Exception('Person has no ticket yet');
         }
 
-        Aircraft::getInstance($this->ticket->getCompany(), $this->ticket->getBrand())->addPassenger($this);
+        Aircraft::getInstance($this->ticket->getCompany(), $this->ticket->getBrand())
+            ->addPassenger($this);
+    }
+
+    public function getSeatClass()
+    {
+        return $this->ticket->getSeatClass();
+    }
+
+    public function getSeatNumber()
+    {
+        // TODO: Implement getSeatNumber() method.
     }
 }

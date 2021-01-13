@@ -2,15 +2,10 @@
 
 namespace AirlinePassengerManifest\Enum;
 
-class Gender extends EnumAbstract
+class Gender
 {
     const MALE = 'male';
     const FEMALE = 'female';
-
-    public function getAll()
-    {
-        // TODO: Implement getAll() method.
-    }
 }
 
 

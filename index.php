@@ -1,18 +1,17 @@
 <?php
 
-
-
 require_once realpath('vendor/autoload.php');
 
+use AirlinePassengerManifest\Enum\SeatClasses;
 use AirlinePassengerManifest\Passenger;
+use AirlinePassengerManifest\Ticket\Ticket;
 
-$passenger = new Passenger('joshua', 4, 'male');
-$passenger->setTicket([
-    'seatNumber' => 4,
-    'class' => \AirlinePassengerManifest\Enum\SeatClasses::ECONOMY_INDEX,
-    'brand' => \AirlinePassengerManifest\Enum\AirplaneTypes::BOEING,
-    'airlineCompany' => \AirlinePassengerManifest\Enum\AirlineCompanies::QANTAS
-]);
-$passenger->checkIn();
+try {
+    $passenger = new Passenger('joshua', 4, 'male');
+    $passengerTicket = new Ticket(4, SeatClasses::ECONOMY_INDEX, 'Boeing', 'Qantas');
+} catch (Exception $e) {
+    echo $e->getMessage();
+}
 
 print_r($passenger);
+print_r($passengerTicket);

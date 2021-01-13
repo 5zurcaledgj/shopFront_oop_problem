@@ -2,7 +2,7 @@
 
 namespace AirlinePassengerManifest\Enum;
 
-class SeatClasses extends EnumAbstract
+class SeatClasses
 {
     const FIRST_CLASS_INDEX = 0;
     const BUSINESS_INDEX = 1;
@@ -29,10 +29,4 @@ class SeatClasses extends EnumAbstract
 
         return $name;
     }
-
-    public function getAll()
-    {
-        // TODO: Implement getAll() method.
-    }
-
 }

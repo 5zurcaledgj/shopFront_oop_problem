@@ -2,29 +2,38 @@
 
 namespace AirlinePassengerManifest\Aircraft;
 
-use AirlinePassengerManifest\Factories\AirlineCompanyFactory;
-use AirlinePassengerManifest\Factories\AirplaneTypeFactory;
+
+use AirlinePassengerManifest\AirlineCompany\IAirlineCompany;
+use AirlinePassengerManifest\AirplaneType\IAirplaneType;
+use AirlinePassengerManifest\Configuration;
+use AirlinePassengerManifest\IPassenger;
 
 class Aircraft
 {
     private static $instances = [];
     private $company;
     private $airplaneType;
+    private $seats;
+    private $configuration;
 
-    private function __construct($company, $airplaneType)
+    private function __construct(IAirlineCompany $company, IAirplaneType $airplaneType)
     {
-        $this->airplaneType = AirplaneTypeFactory::create($airplaneType);
-        $this->company = AirlineCompanyFactory::create($company);
+        $this->airplaneType = $airplaneType;
+        $this->company = $company;
+
+        $this->configuration = Configuration::getSeatConfiguration($airplaneType->getModel(), $company->getCarrierName());
     }
 
-    public static function getInstance($company, $airplaneType) {
-        if (self::$instances[$company][$airplaneType]) {
-            return self::$instances[$company][$airplaneType];
+    public static function getInstance(IAirlineCompany $company, IAirplaneType $airplaneType) {
+        $carrierName = $company->getCarrierName();
+        $brand = $airplaneType->getBrand();
+        if (self::$instances[$carrierName][$brand]) {
+            return self::$instances[$carrierName][$brand];
         }
 
-        $instances[$company][$airplaneType] = new self($company, $airplaneType);
+        $instances[$carrierName][$brand] = new self($company, $airplaneType);
 
-        return $instances[$company][$airplaneType];
+        return $instances[$carrierName][$brand];
     }
 
     public function getSeats() {
@@ -34,18 +43,12 @@ class Aircraft
         }, 0);
     }
 
-    public function getAvailableSeats() {
-        return array_reduce(array_keys($this->seats), function($partialTotal, $class) {
-            $partialTotal += $this->getAvailable($class);
-            return $partialTotal;
-        }, 0);
+    public function getAvailableSeats($seatClass) {
+        return $this->configuration[$seatClass] - $this->getOccupiedSeats($seatClass);
     }
 
-    public function getOccupiedSeats() {
-        return array_reduce(array_keys($this->seats), function($partialTotal, $class) {
-            $partialTotal += $this->getOccupied($class);
-            return $partialTotal;
-        }, 0);
+    public function getOccupiedSeats($seatClass) {
+        return count($this->seats[$seatClass]);
     }
 
     public function getPassengerList() {
@@ -59,5 +62,20 @@ class Aircraft
         }
 
         return $list;
+    }
+
+    public function addPassenger(IPassenger $passenger) {
+        if (!$this->getAvailableSeats($passenger->getSeatClass())) {
+            throw new \Exception('No Available seat');
+        }
+
+        if (empty($this->seats[$passenger->getSeatClass()])) {
+            $this->seats[$passenger->getSeatClass()] = [];
+        }
+
+        $this->seats[$passenger->getSeatClass()][] = $passenger;
+
+        return null;
+
     }
 }

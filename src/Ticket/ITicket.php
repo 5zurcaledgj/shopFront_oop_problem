@@ -1,12 +1,16 @@
 <?php
 
+
 namespace AirlinePassengerManifest\Ticket;
 
-Interface TicketInterface {
 
+interface ITicket
+{
     public function getSeatNumber();
     public function getFlightNumber();
     public function getAirCraftInfo();
     public function getCompany();
     public function getBrand();
+    public function getAircraft();
+    public function getSeatClass();
 }

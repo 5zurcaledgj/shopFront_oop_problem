@@ -22,23 +22,19 @@ class ComposerStaticInitc186421e83592be84f76ff28b295d485
 
     public static $classMap = array (
         'AirlinePassengerManifest\\Aircraft\\Aircraft' => __DIR__ . '/../..' . '/src/Aircraft/Aircraft.php',
-        'AirlinePassengerManifest\\AirlineCompanies\\AirlineCompanyAbstract' => __DIR__ . '/../..' . '/src/AirlineCompanies/AirlineCompanyAbstract.php',
-        'AirlinePassengerManifest\\AirlineCompanies\\EmiratesAirlineCompany' => __DIR__ . '/../..' . '/src/AirlineCompanies/EmiratesAirlineCompany.php',
-        'AirlinePassengerManifest\\AirlineCompanies\\QantasAirlineCompany' => __DIR__ . '/../..' . '/src/AirlineCompanies/QantasAirlineCompany.php',
-        'AirlinePassengerManifest\\AirlineCompanies\\SingaporeAirlineCompany' => __DIR__ . '/../..' . '/src/AirlineCompanies/SingaporeAirlineCompany.php',
-        'AirlinePassengerManifest\\AirplaneTypes\\AirbusAirplaneType' => __DIR__ . '/../..' . '/src/AirplaneTypes/AirbusAirplaneType.php',
-        'AirlinePassengerManifest\\AirplaneTypes\\AirplaneTypeAbstract' => __DIR__ . '/../..' . '/src/AirplaneTypes/AirplaneTypeAbstract.php',
-        'AirlinePassengerManifest\\AirplaneTypes\\BoeingAirplaneType' => __DIR__ . '/../..' . '/src/AirplaneTypes/BoeingAirplaneType.php',
-        'AirlinePassengerManifest\\Enum\\AirlineCompanies' => __DIR__ . '/../..' . '/src/Enum/AirlineCompanies.php',
-        'AirlinePassengerManifest\\Enum\\AirplaneTypes' => __DIR__ . '/../..' . '/src/Enum/AirplaneTypes.php',
-        'AirlinePassengerManifest\\Enum\\EnumAbstract' => __DIR__ . '/../..' . '/src/Enum/EnumAbstract.php',
+        'AirlinePassengerManifest\\AirlineCompany\\AirlineCompany' => __DIR__ . '/../..' . '/src/AirlineCompany/AirlineCompany.php',
+        'AirlinePassengerManifest\\AirlineCompany\\IAirlineCompany' => __DIR__ . '/../..' . '/src/AirlineCompany/IAirlineCompany.php',
+        'AirlinePassengerManifest\\AirplaneType\\AirplaneType' => __DIR__ . '/../..' . '/src/AirplaneType/AirplaneType.php',
+        'AirlinePassengerManifest\\AirplaneType\\IAirplaneType' => __DIR__ . '/../..' . '/src/AirplaneType/IAirplaneType.php',
+        'AirlinePassengerManifest\\Configuration' => __DIR__ . '/../..' . '/src/Configuration.php',
         'AirlinePassengerManifest\\Enum\\Gender' => __DIR__ . '/../..' . '/src/Enum/Gender.php',
         'AirlinePassengerManifest\\Enum\\SeatClasses' => __DIR__ . '/../..' . '/src/Enum/SeatClasses.php',
         'AirlinePassengerManifest\\Factories\\AirlineCompanyFactory' => __DIR__ . '/../..' . '/src/Factories/AirlineCompanyFactory.php',
         'AirlinePassengerManifest\\Factories\\AirplaneTypeFactory' => __DIR__ . '/../..' . '/src/Factories/AirplaneTypeFactory.php',
+        'AirlinePassengerManifest\\IPassenger' => __DIR__ . '/../..' . '/src/IPassenger.php',
         'AirlinePassengerManifest\\Passenger' => __DIR__ . '/../..' . '/src/Passenger.php',
+        'AirlinePassengerManifest\\Ticket\\ITicket' => __DIR__ . '/../..' . '/src/Ticket/ITicket.php',
         'AirlinePassengerManifest\\Ticket\\Ticket' => __DIR__ . '/../..' . '/src/Ticket/Ticket.php',
-        'AirlinePassengerManifest\\Ticket\\TicketInterface' => __DIR__ . '/../..' . '/src/Ticket/TicketInterface.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
