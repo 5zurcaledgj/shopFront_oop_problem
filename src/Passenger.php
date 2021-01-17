@@ -5,7 +5,6 @@ namespace AirlinePassengerManifest;
 use AirlinePassengerManifest\Aircraft\Aircraft;
 use AirlinePassengerManifest\Enum\Gender;
 use AirlinePassengerManifest\Ticket\ITicket;
-use AirlinePassengerManifest\Ticket\Ticket;
 use Exception;
 
 class Passenger implements IPassenger
@@ -14,6 +13,39 @@ class Passenger implements IPassenger
     private $age;
     private $gender;
     private $ticket;
+
+    /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAge()
+    {
+        return $this->age;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGender()
+    {
+        return $this->gender;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTicket()
+    {
+        return $this->ticket;
+    }
+
 
     public function __construct($name, $age, $gender)
     {

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace AirlinePassengerManifest;
+namespace AirlinePassengerManifest\Collections;
 
 
 interface ICollectionItem

@@ -1,10 +1,10 @@
 <?php
 
 
-namespace AirlinePassengerManifest\Collection;
+namespace AirlinePassengerManifest\Collections;
 
 
-class PassengerCollection
+class PassengerCollection extends Collection
 {
 
 }

@@ -1,7 +1,9 @@
 <?php
 
+namespace AirlinePassengerManifest\Collections;
 
-class SeatClassCollection
+
+class SeatClassCollection extends Collection
 {
 
 }
