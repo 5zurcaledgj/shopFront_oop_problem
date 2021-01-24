@@ -2,30 +2,22 @@
 
 namespace AirlinePassengerManifest\Factories;
 
-
-use AirlinePassengerManifest\AirlineCompanies\QantasAirlineCompany;
+use AirlinePassengerManifest\AirlineCompany\AirlineCompany;
+use AirlinePassengerManifest\AirlineCompany\IAirlineCompany;
+use AirlinePassengerManifest\Configuration;
 use Exception;
 
 class AirlineCompanyFactory
 {
 
-    public static function create($name)
+    public static function create($name) : IAirlineCompany
     {
         $airlineCompany = null;
-        switch ($name) {
-            case 'Qantas';
-                $airlineCompany = new QantasAirlineCompany();
-                break;
-
-            default;
-
-                //nothing
-        }
-
-        if (null === $airlineCompany) {
+        $companyData = Configuration::getAirlineCompanies($name);
+        if (null === $companyData) {
             throw new Exception('Invalid Company');
         }
 
-        return $airlineCompany;
+        return new AirlineCompany($companyData['carrierName'], $companyData['headQuarters']) ;
     }
 }

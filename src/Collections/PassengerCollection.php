@@ -4,7 +4,7 @@
 namespace AirlinePassengerManifest\Collections;
 
 
-class PassengerCollection extends Collection
+class PassengerCollection extends GenericCollection
 {
 
 }

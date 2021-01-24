@@ -2,14 +2,18 @@
 
 namespace AirlinePassengerManifest\Collections;
 
+use ArrayIterator;
+use IteratorAggregate;
+
 /**
  * The class that allows creating collections of objects.
  *
  * @package Tygh\Template
  */
-abstract class Collection
+abstract class GenericCollection implements IteratorAggregate
 {
     protected $name;
+    private $values;
 
     /**
      * @return mixed
@@ -21,7 +25,7 @@ abstract class Collection
 
     /**
      * @param mixed $name
-     * @return Collection
+     * @return GenericCollection
      */
     public function setName($name)
     {
@@ -33,22 +37,21 @@ abstract class Collection
     protected $items = array();
 
     /**
-     * Collection constructor.
+     * GenericCollection constructor.
      *
      * @param array $items List of items.
      */
     public function __construct(array $items = array())
     {
-        foreach ($items as $name => $variable) {
-            $this->add($name, $variable);
+        foreach ($items as $variable) {
+            $this->add($variable);
         }
     }
 
     /**
      * Add item to collection.
      *
-     * @param string    $name       Item name.
-     * @param mixed     $item       Instance of item.
+     * @param mixed $item Instance of item.
      */
     public function add(ICollectionItem $item)
     {
@@ -97,5 +100,13 @@ abstract class Collection
     public function getAll()
     {
         return $this->items;
+    }
+
+    public function getIterator() {
+        return new ArrayIterator($this->values);
+    }
+
+    public function count() {
+        return count($this->items);
     }
 }

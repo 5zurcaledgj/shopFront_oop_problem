@@ -3,7 +3,7 @@
 namespace AirlinePassengerManifest\Collections;
 
 
-class SeatClassCollection extends Collection
+class SeatClassCollection extends GenericCollection
 {
 
 }

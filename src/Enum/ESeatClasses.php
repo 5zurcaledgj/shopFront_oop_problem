@@ -2,7 +2,7 @@
 
 namespace AirlinePassengerManifest\Enum;
 
-class SeatClasses
+class ESeatClasses
 {
     const FIRST_CLASS_INDEX = 0;
     const BUSINESS_INDEX = 1;
@@ -28,5 +28,14 @@ class SeatClasses
         }
 
         return $name;
+    }
+
+    public static function getAll() : array {
+        return [
+            self::FIRST_CLASS_INDEX => self::getName(self::FIRST_CLASS_INDEX),
+            self::PREMIUM_ECONOMY_INDEX => self::getName(self::PREMIUM_ECONOMY_INDEX),
+            self::BUSINESS_INDEX => self::getName(self::BUSINESS_INDEX),
+            self::ECONOMY_INDEX => self::getName(self::ECONOMY_INDEX),
+        ];
     }
 }

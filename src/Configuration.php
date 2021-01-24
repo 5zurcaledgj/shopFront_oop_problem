@@ -4,7 +4,7 @@
 namespace AirlinePassengerManifest;
 
 
-use AirlinePassengerManifest\Enum\SeatClasses;
+use AirlinePassengerManifest\Enum\ESeatClasses;
 use Exception;
 
 class Configuration
@@ -67,62 +67,62 @@ class Configuration
         $config = [
             'Qantas' => [
                 'Boeing' => [
-                    SeatClasses::FIRST_CLASS_INDEX => 0,
-                    SeatClasses::BUSINESS_INDEX => 13,
-                    SeatClasses::PREMIUM_ECONOMY_INDEX=> 0,
-                    SeatClasses::ECONOMY_INDEX => 162,
+                    ESeatClasses::FIRST_CLASS_INDEX => 0,
+                    ESeatClasses::BUSINESS_INDEX => 13,
+                    ESeatClasses::PREMIUM_ECONOMY_INDEX=> 0,
+                    ESeatClasses::ECONOMY_INDEX => 162,
                 ],
                 'Airbus' => [
-                    SeatClasses::FIRST_CLASS_INDEX => 14,
-                    SeatClasses::BUSINESS_INDEX => 64,
-                    SeatClasses::PREMIUM_ECONOMY_INDEX=> 35,
-                    SeatClasses::ECONOMY_INDEX => 371,
+                    ESeatClasses::FIRST_CLASS_INDEX => 14,
+                    ESeatClasses::BUSINESS_INDEX => 64,
+                    ESeatClasses::PREMIUM_ECONOMY_INDEX=> 35,
+                    ESeatClasses::ECONOMY_INDEX => 371,
                 ],
                 'Dash' => [
-                    SeatClasses::FIRST_CLASS_INDEX => 0,
-                    SeatClasses::BUSINESS_INDEX => 0,
-                    SeatClasses::PREMIUM_ECONOMY_INDEX=> 0,
-                    SeatClasses::ECONOMY_INDEX => 38,
+                    ESeatClasses::FIRST_CLASS_INDEX => 0,
+                    ESeatClasses::BUSINESS_INDEX => 0,
+                    ESeatClasses::PREMIUM_ECONOMY_INDEX=> 0,
+                    ESeatClasses::ECONOMY_INDEX => 38,
                 ],
             ],
             'Singapore Airlines' => [
                 'Boeing' => [
-                    SeatClasses::FIRST_CLASS_INDEX => 0,
-                    SeatClasses::BUSINESS_INDEX => 8,
-                    SeatClasses::PREMIUM_ECONOMY_INDEX=> 14,
-                    SeatClasses::ECONOMY_INDEX => 160,
+                    ESeatClasses::FIRST_CLASS_INDEX => 0,
+                    ESeatClasses::BUSINESS_INDEX => 8,
+                    ESeatClasses::PREMIUM_ECONOMY_INDEX=> 14,
+                    ESeatClasses::ECONOMY_INDEX => 160,
                 ],
                 'Airbus' => [
-                    SeatClasses::FIRST_CLASS_INDEX => 12,
-                    SeatClasses::BUSINESS_INDEX => 80,
-                    SeatClasses::PREMIUM_ECONOMY_INDEX=> 40,
-                    SeatClasses::ECONOMY_INDEX => 360,
+                    ESeatClasses::FIRST_CLASS_INDEX => 12,
+                    ESeatClasses::BUSINESS_INDEX => 80,
+                    ESeatClasses::PREMIUM_ECONOMY_INDEX=> 40,
+                    ESeatClasses::ECONOMY_INDEX => 360,
                 ],
                 'Dash' => [
-                    SeatClasses::FIRST_CLASS_INDEX => 0,
-                    SeatClasses::BUSINESS_INDEX => 0,
-                    SeatClasses::PREMIUM_ECONOMY_INDEX=> 4,
-                    SeatClasses::ECONOMY_INDEX => 30,
+                    ESeatClasses::FIRST_CLASS_INDEX => 0,
+                    ESeatClasses::BUSINESS_INDEX => 0,
+                    ESeatClasses::PREMIUM_ECONOMY_INDEX=> 4,
+                    ESeatClasses::ECONOMY_INDEX => 30,
                 ],
             ],
             'Singapore Emirates' => [
                 'Boeing' => [
-                    SeatClasses::FIRST_CLASS_INDEX => 4,
-                    SeatClasses::BUSINESS_INDEX => 8,
-                    SeatClasses::PREMIUM_ECONOMY_INDEX=> 6,
-                    SeatClasses::ECONOMY_INDEX => 150,
+                    ESeatClasses::FIRST_CLASS_INDEX => 4,
+                    ESeatClasses::BUSINESS_INDEX => 8,
+                    ESeatClasses::PREMIUM_ECONOMY_INDEX=> 6,
+                    ESeatClasses::ECONOMY_INDEX => 150,
                 ],
                 'Airbus' => [
-                    SeatClasses::FIRST_CLASS_INDEX => 16,
-                    SeatClasses::BUSINESS_INDEX => 64,
-                    SeatClasses::PREMIUM_ECONOMY_INDEX=> 50,
-                    SeatClasses::ECONOMY_INDEX => 3000,
+                    ESeatClasses::FIRST_CLASS_INDEX => 16,
+                    ESeatClasses::BUSINESS_INDEX => 64,
+                    ESeatClasses::PREMIUM_ECONOMY_INDEX=> 50,
+                    ESeatClasses::ECONOMY_INDEX => 3000,
                 ],
                 'Dash' => [
-                    SeatClasses::FIRST_CLASS_INDEX => 0,
-                    SeatClasses::BUSINESS_INDEX => 0,
-                    SeatClasses::PREMIUM_ECONOMY_INDEX=> 0,
-                    SeatClasses::ECONOMY_INDEX => 40,
+                    ESeatClasses::FIRST_CLASS_INDEX => 0,
+                    ESeatClasses::BUSINESS_INDEX => 0,
+                    ESeatClasses::PREMIUM_ECONOMY_INDEX=> 0,
+                    ESeatClasses::ECONOMY_INDEX => 40,
                 ],
             ]
         ];

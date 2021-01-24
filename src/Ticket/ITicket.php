@@ -13,4 +13,6 @@ interface ITicket
     public function getBrand();
     public function getAircraft();
     public function getSeatClass();
+    public function getAirlineCompany();
+    public function getAirplaneType();
 }

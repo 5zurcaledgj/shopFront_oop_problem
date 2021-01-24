@@ -2,7 +2,7 @@
 
 namespace AirlinePassengerManifest\Enum;
 
-class Gender
+class Sex
 {
     const MALE = 'male';
     const FEMALE = 'female';

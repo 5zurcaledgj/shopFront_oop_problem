@@ -47,7 +47,7 @@ class PassengerTest extends TestCase
         $this->assertEquals(14, $this->passenger->getAge());
     }
 
-    public function testGetGender() {
-        $this->assertEquals('male', $this->passenger->getGender());
+    public function testGetSex() {
+        $this->assertEquals('male', $this->passenger->getSex());
     }
 }

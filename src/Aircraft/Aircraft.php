@@ -5,10 +5,14 @@ namespace AirlinePassengerManifest\Aircraft;
 
 use AirlinePassengerManifest\AirlineCompany\IAirlineCompany;
 use AirlinePassengerManifest\AirplaneType\IAirplaneType;
+use AirlinePassengerManifest\Collections\PassengerCollection;
+use AirlinePassengerManifest\Collections\SeatClassCollection;
 use AirlinePassengerManifest\Configuration;
+use AirlinePassengerManifest\Enum\ESeatClasses;
 use AirlinePassengerManifest\IPassenger;
+use AirlinePassengerManifest\SeatClass;
 
-class Aircraft
+class Aircraft implements IAircraft
 {
     private static $instances = [];
     private $company;
@@ -20,20 +24,30 @@ class Aircraft
     {
         $this->airplaneType = $airplaneType;
         $this->company = $company;
-
+        $this->initSeatCollection();
         $this->configuration = Configuration::getSeatConfiguration($airplaneType->getModel(), $company->getCarrierName());
     }
 
-    public static function getInstance(IAirlineCompany $company, IAirplaneType $airplaneType) {
+    public function initSeatCollection() {
+        $seats = [];
+        foreach (ESeatClasses::getAll() as $classIndex => $name) {
+            $seats[$name] = new SeatClass($name, $classIndex);
+        }
+
+        $this->seats = new SeatClassCollection($seats);
+    }
+
+    public static function getInstance(IAirlineCompany $company, IAirplaneType $airplaneType) : IAircraft
+    {
         $carrierName = $company->getCarrierName();
         $brand = $airplaneType->getBrand();
         if (self::$instances[$carrierName][$brand]) {
             return self::$instances[$carrierName][$brand];
         }
 
-        $instances[$carrierName][$brand] = new self($company, $airplaneType);
+        self::$instances[$carrierName][$brand] = new self($company, $airplaneType);
 
-        return $instances[$carrierName][$brand];
+        return self::$instances[$carrierName][$brand];
     }
 
     public function getSeats() {
@@ -48,34 +62,29 @@ class Aircraft
     }
 
     public function getOccupiedSeats($seatClass) {
-        return count($this->seats[$seatClass]);
+        return $this->seats->get(ESeatClasses::getName($seatClass))->getNumberOfPassengers();
     }
 
     public function getPassengerList() {
-        $list = "";
-        foreach ($this->seats as $class => $pasengers) {
-            foreach ($pasengers as $seatNumber => $pasenger) {
-                $_seatNumber = $seatNumber + 1;
-                $list .= "Name: {$pasenger['name']}, Age: {$pasenger['age']},  
-                    Gender: {$pasenger['gender']}, Seat: {$this->getClassName($class)} {$_seatNumber}";
-            }
-        }
+//        $list = "";
+//        foreach ($this->seats as $class => $pasengers) {
+//            foreach ($pasengers as $seatNumber => $pasenger) {
+//                $_seatNumber = $seatNumber + 1;
+//                $list .= "Name: {$pasenger['name']}, Age: {$pasenger['age']},
+//                    Sex: {$pasenger['sex']}, Seat: {$this->getClassName($class)} {$_seatNumber}";
+//            }
+//        }
 
-        return $list;
+        return $this->seats;
     }
 
-    public function addPassenger(IPassenger $passenger) {
-        if (!$this->getAvailableSeats($passenger->getSeatClass())) {
+    public function addPassenger(IPassenger $passenger) : IPassenger {
+        $passengerClass = $passenger->getSeatClass();
+        if (!$this->getAvailableSeats($passengerClass)) {
             throw new \Exception('No Available seat');
         }
 
-        if (empty($this->seats[$passenger->getSeatClass()])) {
-            $this->seats[$passenger->getSeatClass()] = [];
-        }
-
-        $this->seats[$passenger->getSeatClass()][] = $passenger;
-
-        return null;
+        return $this->seats->get(ESeatClasses::getName($passengerClass))->addPassenger($passenger);
 
     }
 }
