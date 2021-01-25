@@ -105,7 +105,7 @@ class Configuration
                     ESeatClasses::ECONOMY_INDEX => 30,
                 ],
             ],
-            'Singapore Emirates' => [
+            'Emirates' => [
                 'Boeing' => [
                     ESeatClasses::FIRST_CLASS_INDEX => 4,
                     ESeatClasses::BUSINESS_INDEX => 8,
@@ -137,5 +137,48 @@ class Configuration
 
 
         return $config[$airlineCompany][$airplaneBrand];
+    }
+
+    public static function getFlight($flightNumber = null) {
+        $flights = [
+            'BQ23423' => [
+                'destination' => 'Manila, Philippines',
+                'terminal' => 'B2',
+                'brand' => 'Boeing',
+                'company' => 'Qantas',
+                'flightNumber' => 'BQ23423'
+            ],
+            'DE34245' => [
+                'destination' => 'Singapore, Singapore',
+                'terminal' => 'B5',
+                'brand' => 'Dash',
+                'company' => 'Emirates',
+                'flightNumber' => 'DE34245'
+            ],
+            'AQE56982' => [
+                'destination' => 'Los Angeles, California',
+                'terminal' => 'A4',
+                'brand' => 'Airbus',
+                'company' => 'Qantas',
+                'flightNumber' => 'AQE56982'
+            ],
+            'BSE56982' => [
+                'destination' => 'Los Angeles, California',
+                'terminal' => 'A4',
+                'brand' => 'Boeing',
+                'company' => 'Singapore Airlines',
+                'flightNumber' => 'BSE56982'
+            ]
+        ];
+
+        if (null === $flightNumber) {
+            return $flights;
+        }
+
+        if (isset($flights[$flightNumber])) {
+            return $flights[$flightNumber];
+        }
+
+        throw new Exception('Invalid flight number');
     }
 }

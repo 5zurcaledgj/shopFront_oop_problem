@@ -9,7 +9,6 @@ use AirlinePassengerManifest\AirlineCompany\IAirlineCompany;
 use AirlinePassengerManifest\AirplaneType\AirplaneType;
 use AirlinePassengerManifest\AirplaneType\IAirplaneType;
 use AirlinePassengerManifest\Configuration;
-use AirlinePassengerManifest\IPassenger;
 use TicketException;
 
 class Ticket implements ITicket
@@ -24,11 +23,12 @@ class Ticket implements ITicket
      */
     private $airplaneType;
 
-    public function __construct($seatNumber, $seatClass, $brand, $airlineCompany)
+    public function __construct($seatNumber, $seatClass, $flightNumber)
     {
         $this->seatNumber = $seatNumber;
         $this->seatClass = $seatClass;
 
+        $flightData = Configuration::getFlight($flightNumber);
         if (is_null($this->seatNumber)) {
             throw new TicketException('Invalid SeatNumber');
         }
@@ -37,22 +37,25 @@ class Ticket implements ITicket
             throw new TicketException('Invalid Class');
         }
 
-        if (is_null($brand)) {
+        if (is_null($flightData['brand'])) {
             throw new TicketException('Invalid Brand');
         }
 
-        if (is_null($airlineCompany)) {
+        if (is_null($flightData['company'])) {
             throw new TicketException('Invalid Company');
         }
 
-        $airplane = Configuration::getAirplaneTypes($brand);
+        $airplane = Configuration::getAirplaneTypes($flightData['brand']);
         $this->airplaneType = new AirplaneType($airplane['brand'], $airplane['model']);
 
-        $company = Configuration::getAirlineCompanies($airlineCompany);
+        $company = Configuration::getAirlineCompanies($flightData['company']);
         $this->airlineCompany = new AirlineCompany($company['carrierName'], $company['headQuarters']);
 
         //This initializes the instance of the aircraft
-        $this->aircraft = Aircraft::getInstance($this->airlineCompany, $this->airplaneType);
+        Aircraft::getInstance($this->airlineCompany, $this->airplaneType)
+            ->setDestination($flightData['destination'])
+            ->setFlightNumber($flightData['flightNumber'])
+            ->setTerminal($flightData['terminal']);
     }
 
     public function getSeatNumber()
@@ -62,7 +65,17 @@ class Ticket implements ITicket
 
     public function getFlightNumber()
     {
-        return $this->flightNumber;
+        return Aircraft::getInstance($this->airlineCompany, $this->airplaneType)->getFlightNumber();
+    }
+
+    public function getTerminal()
+    {
+        return Aircraft::getInstance($this->airlineCompany, $this->airplaneType)->getTerminal();
+    }
+
+    public function getDestination()
+    {
+        return Aircraft::getInstance($this->airlineCompany, $this->airplaneType)->getTerminal();
     }
 
     public function getAirCraftInfo()

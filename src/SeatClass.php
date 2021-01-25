@@ -49,4 +49,9 @@ class SeatClass implements ICollectionItem
     public function getPassenger(IPassenger $passenger) {
         return $this->pasengers->get($passenger->getName());
     }
+
+
+    public function getPassengers() {
+        return $this->pasengers;
+    }
 }

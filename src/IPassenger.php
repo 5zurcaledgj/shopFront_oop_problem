@@ -9,4 +9,6 @@ interface IPassenger extends ICollectionItem
 {
     public function getSeatClass();
     public function getSeatNumber();
+    public function getAge();
+    public function getSex();
 }

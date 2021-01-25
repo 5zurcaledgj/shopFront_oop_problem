@@ -3,7 +3,7 @@
 namespace AirlinePassengerManifest;
 
 use AirlinePassengerManifest\Aircraft\Aircraft;
-use AirlinePassengerManifest\Enum\Sex;
+use AirlinePassengerManifest\Enum\ESex;
 use AirlinePassengerManifest\Ticket\ITicket;
 use Exception;
 
@@ -49,8 +49,8 @@ class Passenger implements IPassenger
 
     public function __construct($name, $age, $sex)
     {
-        if (Sex::FEMALE != $sex && Sex::MALE != $sex) {
-            throw new \Exception('Invalid Sex');
+        if (ESex::FEMALE != $sex && ESex::MALE != $sex) {
+            throw new \Exception('Invalid ESex');
         }
 
         $this->name = $name;
